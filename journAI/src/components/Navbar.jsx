@@ -5,7 +5,7 @@ import logo from "../assets/logo.svg";
 
 const Navbar = () => {
   return (
-    <div className="fixed top-0 flex h-[10vh] w-full justify-between bg-white">
+    <div className="fixed z-[100] top-0 flex h-[10vh] w-full justify-between bg-white">
       <div className="flex items-center pl-4">
         <img className="h-fit w-[30px]" src={logo} alt="logo" />
         <p className="pb-1 pl-4 text-2xl text-violet">JournAI</p>
