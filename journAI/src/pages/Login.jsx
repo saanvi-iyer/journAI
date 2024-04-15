@@ -6,7 +6,7 @@ import { Lock } from "lucide-react";
 import { Mail } from "lucide-react";
 //import logo from "./assets/logo.svg";
 
-function App() {
+function Login() {
   const [count, setCount] = useState(0);
 
   return (

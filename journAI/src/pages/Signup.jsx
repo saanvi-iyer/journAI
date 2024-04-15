@@ -6,7 +6,7 @@ import { Lock } from "lucide-react";
 import { Mail } from "lucide-react";
 // import logo from "./assets/logo.svg";
 
-function App() {
+function Signup() {
   const [count, setCount] = useState(0);
 
   return (
@@ -17,7 +17,7 @@ function App() {
             <img className="w-[35px]" src={logo} alt="logo" />
           </div>
           <div className="flex flex-col gap-y-1.5 text-center">
-            <span className="text-deep-blue">Get Started with </span> <span className="text-violet">JournAI</span>
+            <span className="text-deep-blue">Get Started with </span><span className="text-violet">JournAI</span>
             <p className="text-xs text-[#8B8D97]">Create your account</p>
           </div>
           <div className="flex w-full flex-col gap-y-3 justify-center items-center">
@@ -62,7 +62,7 @@ function App() {
             <span className="text-purple-plum text-sm">Sign up</span>
           </div>
           <div className="border-purple-plum border-[1.5px] bg-lilac-petals w-[40%] h-[40px] text-purple-plum flex justify-center items-center pb-1 rounded-[10px] cursor-pointer hover:bg-purple-plum hover:text-white">
-            <p className=" ">Login</p>
+            <p className=" ">Signup</p>
           </div>
         </div>
       </div>
@@ -70,4 +70,4 @@ function App() {
   );
 }
 
-export default App;
+export default Signup;
