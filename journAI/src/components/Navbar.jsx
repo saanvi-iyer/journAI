@@ -5,19 +5,18 @@ import logo from "../assets/logo.svg";
 
 const Navbar = () => {
   return (
-    <div className="w-full bg-white flex h-[10vh] fixed top-0 justify-between">
+    <div className="fixed top-0 flex h-[10vh] w-full justify-between bg-white">
       <div className="flex items-center pl-4">
         <img className="h-fit w-[30px]" src={logo} alt="logo" />
-        <p className="text-violet text-2xl pl-4 pb-1">JournAI</p>
+        <p className="pb-1 pl-4 text-2xl text-violet">JournAI</p>
       </div>
-      <div className="flex justify-center items-center">
-        <div className="w-full bg-lilac-petals h-10 flex px-4 gap-x-32 rounded-lg justify-center items-center ">
-          <p className="text-purple-plum text-xl">Search Entry...</p>
+      <div className="flex items-center justify-center">
+        <div className="flex h-10 w-full items-center justify-center gap-x-32 rounded-lg bg-lilac-petals px-4 ">
+          <p className="text-xl text-purple-plum">Search Entry...</p>
           <Search color="#6648DB" />
         </div>
-        <User className="h-10 w-auto mx-4" color="#D0D1FF" />
+        <User className="mx-4 h-10 w-auto" color="#D0D1FF" />
       </div>
-      
     </div>
   );
 };
