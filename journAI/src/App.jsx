@@ -1,14 +1,23 @@
+/*
+* Title:  
+* @author: Saanvi Iyer
+* @since 15-04-2024
+*/
+
 import React from "react"
-import { Login } from "./pages/Login"
-import { Signup } from "./pages/Signup"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import  Login  from "./pages/Login"
+import  Signup  from "./pages/Signup"
 
 const App = () => {
   return (
     <>
       <Router>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/signup' component={Signup} />
+        <Routes>
+          <Route exact path='/' element={<Login/>} />
+          <Route exact path='/login' element={<Login/>} />
+          <Route exact path='/signup' element={<Signup/>} />
+        </Routes>
       </Router>
     </>
   )
