@@ -3,12 +3,14 @@ import { User } from "lucide-react";
 import { Lock } from "lucide-react";
 import { Mail } from "lucide-react";
 import logo from "../assets/logo.svg";
+import { useNavigate } from "react-router-dom";
 import InputBox from "../components/InputBox";
 
-
 function Login() {
-  const [count, setCount] = useState(0);
-
+  const navigate = useNavigate();
+  function Home() {
+    navigate("/home");
+  }
   return (
     <>
       <div className="background w-screen h-screen flex justify-center items-center">
@@ -43,7 +45,11 @@ function Login() {
               <span className="text-purple-plum text-sm">Sign up</span>
             </a>
           </div>
-          <div className="border-purple-plum border-[1.5px] bg-lilac-petals w-[40%] h-[40px] text-purple-plum flex justify-center items-center pb-1 rounded-[10px] cursor-pointer hover:bg-purple-plum hover:text-white">
+
+          <div
+            onClick={Home}
+            className="border-purple-plum border-[1.5px] bg-lilac-petals w-[40%] h-[40px] text-purple-plum flex justify-center items-center pb-1 rounded-[10px] cursor-pointer hover:bg-purple-plum hover:text-white"
+          >
             <p className=" ">Login</p>
           </div>
         </div>

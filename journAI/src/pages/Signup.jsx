@@ -17,10 +17,10 @@ function Signup() {
           </div>
           <div className="flex flex-col gap-y-1.5 text-center">
             <div>
-              <span className="text-deep-blue">Get Started with </span>
-              <span className="text-violet">JournAI</span>
+              <span className="text-deep-blue text-xl ">Get Started with </span>
+              <span className="text-violet text-2xl font-semibold">JournAI</span>
             </div>
-            <p className="text-xs text-[#8B8D97]">Create your account</p>
+            <p className="text-sm text-[#8B8D97]">Create your account</p>
           </div>
           <div className="flex w-full flex-col gap-y-4  items-center px-8">
             <InputBox
