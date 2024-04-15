@@ -22,7 +22,7 @@ function Signup() {
             </div>
             <p className="text-xs text-[#8B8D97]">Create your account</p>
           </div>
-          <div className="flex w-full flex-col gap-y-4  items-center">
+          <div className="flex w-full flex-col gap-y-4  items-center px-8">
             <InputBox
               names="Name"
               types="text"
