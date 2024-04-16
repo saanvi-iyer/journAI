@@ -14,7 +14,7 @@ const Navbar = () => {
         <div className="relative ">
           <input
             type="text"
-            className="flex h-10 w-full items-center justify-center gap-x-32 rounded-lg bg-lilac-petals px-4 pr-24 placeholder:text-violet  focus:bg-white focus:text-purple-plum  focus:outline-violet "
+            className="flex h-10 w-full items-center justify-center gap-x-32 rounded-lg bg-lilac-petals px-4 pr-32 placeholder:text-violet  focus:bg-white focus:text-purple-plum  focus:outline-violet "
             placeholder="Search entry.."
           />
           <Search

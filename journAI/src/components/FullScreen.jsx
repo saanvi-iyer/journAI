@@ -1,16 +1,15 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "./Navbar";
 import { useState } from "react";
 import { Star } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Pencil } from "lucide-react";
+import { Shrink } from "lucide-react";
+import { Trash2 } from "lucide-react";
 
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-
-const Edit = () => {
+const FullScreen = () => {
   const [selected, setSelected] = useState(false);
-  const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
   function Home() {
     navigate("/home");
@@ -18,31 +17,6 @@ const Edit = () => {
   function Edit() {
     navigate("/edit");
   }
-  const handleSave = () =>
-    MySwal.fire({
-      icon: "success",
-      title: "Your work has been saved",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  const handleDelete = () =>
-    MySwal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        MySwal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      }
-    });
   const toggleSelected = () => {
     setSelected(!selected);
   };
@@ -52,20 +26,13 @@ const Edit = () => {
       <Navbar />
 
       <div className="mt-[10vh] flex items-center px-[2%] py-[2%]">
-        <ChevronLeft
-          onClick={Home}
-          className="mb-1 ml-[-10px] mt-2.5"
-          size={32}
-          color="#0F2851"
-        />
-        <p className="ml-[12px] text-4xl font-semibold text-deep-blue ">
-        Edit Entry
-        </p>
+        <ChevronLeft onClick={Home} className="ml-[-10px] mt-2.5 " size={32} />
       </div>
       <div className="mx-auto flex h-[70vh] w-[90vw] flex-col overflow-auto rounded-xl bg-white p-4">
         <div className="flex items-center justify-between">
-          <span className="mb-0.5 text-3xl text-deep-blue">Edit Title</span>
+          <span className="mb-0.5 text-3xl text-deep-blue">Title</span>
           <div className="flex gap-x-4">
+            <Shrink onClick={FullScreen} className="w-[20px]" color="#0F2851" />
             <Star
               onClick={toggleSelected}
               fill={selected ? "#F2D382" : "white"}
@@ -104,18 +71,20 @@ const Edit = () => {
             <p className="text-deep-blue">Energetic</p>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-y-3">
+        <div>
           <div
-            onClick={handleSave}
-            className="bg-water flex min-h-10 w-[20vw] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-none text-center text-white hover:bg-turquoise"
+            onClick={Create}
+            className="flex min-h-10 w-full cursor-pointer items-center justify-center rounded-lg border-[1.5px]  border-none bg-purple-plum text-center text-white hover:bg-[#7352F7]"
           >
-            <p className="text-md h-auto w-full">Save Changes</p>
+            <p className="h-auto w-full text-[18px]">New Entry</p>
+            <Plus />
           </div>
           <div
-            onClick={handleDelete}
-            className="flex min-h-10 w-[20vw] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-none bg-alert text-center text-white hover:bg-[#FF6464] "
+            onClick={Create}
+            className="flex min-h-10 w-full cursor-pointer items-center justify-center rounded-lg border-[1.5px]  border-none bg-purple-plum text-center text-white hover:bg-[#7352F7]"
           >
-            <p className="text-md h-auto w-full">Delete Entry</p>
+            <p className="h-auto w-full text-[18px]">New Entry</p>
+            <Plus />
           </div>
         </div>
       </div>
@@ -123,4 +92,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default FullScreen;

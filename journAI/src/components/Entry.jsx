@@ -20,7 +20,12 @@ const Entry = () => {
       <div className="flex items-center justify-between">
         <span className="mb-0.5 text-3xl text-deep-blue">Title</span>
         <div className="flex gap-x-4">
-          <Pencil onClick={Edit} className="w-[20px] " color="#0F2851" />
+          <Pencil
+            onClick={Edit}
+            fill={selected ? "#F2D382" : "white"}
+            className=" w-[20px] hover:cursor-pointer hover:fill-violet active:scale-95"
+            color="#0F2851"
+          />
           <Expand className="w-[20px]" color="#0F2851" />
           <Star
             onClick={toggleSelected}

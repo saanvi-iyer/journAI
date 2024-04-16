@@ -28,7 +28,7 @@ module.exports = {
         "lilac-petals": "#E4E7FF",
         "dark-grey": "#898C9D",
         "light-blue": "#CFEBFF",
-        turquoise: "#58C6CD",
+        turquoise: "#00E0ED",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
