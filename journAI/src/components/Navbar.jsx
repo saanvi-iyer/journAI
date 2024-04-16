@@ -11,15 +11,19 @@ const Navbar = () => {
         <p className="pb-1 pl-4 text-2xl text-violet">JournAI</p>
       </div>
       <div className="flex items-center justify-center">
-        <div className="relative">
+        <div className="relative ">
           <input
             type="text"
-            className="flex pr-10 h-10 w-full items-center justify-center gap-x-32 rounded-lg bg-violet px-4 focus:border-purple-plum focus:bg-lilac-petals focus:text-purple-plum focus:outline-none "
-            placeholder="Search entry..."
+            className="flex h-10 w-full items-center justify-center gap-x-32 rounded-lg bg-lilac-petals px-4 pr-24 placeholder:text-violet  focus:bg-white focus:text-purple-plum  focus:outline-violet "
+            placeholder="Search entry.."
           />
-          <Search className="absolute right-2 top-1/2 -translate-y-1/2" color="#ffffff" />
+          <Search
+            className="absolute right-2 top-1/2 -translate-y-1/2"
+            color="#A1A3F6"
+
+          />
         </div>
-        <User className="mx-4 h-10 w-auto" color="#D0D1FF" />
+        <User className="mx-4 h-8 w-auto" color="#6648DB" />
       </div>
     </div>
   );

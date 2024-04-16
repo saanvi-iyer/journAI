@@ -79,12 +79,12 @@
     background-size: cover;
   }
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
     height: 6px;
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #ffc680;
+    background-color: #D0D1FF;
     border-radius: 6px;
   }
   
