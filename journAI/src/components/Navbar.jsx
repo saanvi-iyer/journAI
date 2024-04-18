@@ -51,7 +51,7 @@ const Navbar = () => {
       }
     });
   return (
-    <div className="fixed top-0 z-[10] flex h-[10vh] w-full justify-between bg-white">
+    <div className="fixed top-0 z-[50] flex h-[10vh] w-full justify-between bg-white">
       <div className="flex items-center pl-4">
         <Sheet>
           <SheetTrigger asChild>
