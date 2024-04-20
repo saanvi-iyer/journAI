@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { Minus } from "lucide-react";
+import { Plus } from "lucide-react";
 
 const Edit = () => {
   const [selected, setSelected] = useState(false);
@@ -59,7 +61,7 @@ const Edit = () => {
           color="#0F2851"
         />
         <p className="ml-[12px] text-4xl font-semibold text-deep-blue ">
-        Edit Entry
+          Edit Entry
         </p>
       </div>
       <div className="mx-auto flex h-[70vh] w-[90vw] flex-col overflow-auto rounded-xl bg-white p-4">
@@ -75,7 +77,7 @@ const Edit = () => {
           </div>
         </div>
         <div className="my-1.5 h-0.5 w-full overflow-auto bg-violet/60" />
-        <p className="text-dark-grey pl-1">Date</p>
+        <p className="pl-1 text-dark-grey">Date</p>
         <p className="ml-1 mt-3 w-fit">
           Lorem ipsum dolor sit amet. Et deleniti amet qui accusantium autem et
           nulla voluptas et similique adipisci. Necessitatibus beatae et
@@ -93,21 +95,42 @@ const Edit = () => {
           et odio dolor aut soluta molestiae. Qui reprehenderit minima est
           aliquid harum sit omnis nihil........
         </p>
-        <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
-          <div className="bg-light-blue rounded px-4 py-1.5 font-medium">
-            <p className="text-deep-blue">Rejuvenated</p>
+
+        <div className="mt-16 flex flex-col gap-y-4">
+          <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
+            <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Minus />
+            </div>
+            <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Minus />
+            </div>
+            <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Minus />
+            </div>
           </div>
-          <div className="bg-light-blue rounded px-4 py-1.5 font-medium">
-            <p className="text-deep-blue">Happy</p>
-          </div>
-          <div className="bg-light-blue rounded px-4 py-1.5 font-medium">
-            <p className="text-deep-blue">Energetic</p>
+          <p className="ml-1.5 flex font-bold">Add Emotion Tags</p>
+          <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
+            <div className="flex gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Plus />
+            </div>
+            <div className="flex gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Plus />
+            </div>
+            <div className="flex gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Plus />
+            </div>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-y-3">
           <div
             onClick={handleSave}
-            className="bg-water flex min-h-10 w-[20vw] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-none text-center text-white hover:bg-turquoise"
+            className="flex min-h-10 w-[20vw] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-none bg-water text-center text-white hover:bg-turquoise"
           >
             <p className="text-md h-auto w-full">Save Changes</p>
           </div>

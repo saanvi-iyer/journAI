@@ -57,7 +57,7 @@ const Entry = ({maximize,handleMaximize}) => {
       </div>
       <div className="my-1.5 h-0.5 w-full overflow-auto bg-violet/60" />
       <p className="pl-1 text-dark-grey">Date</p>
-      <p className="ml-1 mt-3 w-fit">
+      <p className="ml-1 mt-3 mb-5 w-fit">
         Lorem ipsum dolor sit amet. Et deleniti amet qui accusantium autem et
         nulla voluptas et similique adipisci. Necessitatibus beatae et
         temporibus nobis id quaerat maxime nam consequatur voluptas rem dolor
@@ -72,21 +72,7 @@ const Entry = ({maximize,handleMaximize}) => {
         rerum et inventore labore vel corporis voluptas in consequuntur
         voluptas. Et saepe voluptate sed commodi magni qui voluptatem delectus
         et odio dolor aut soluta molestiae. Qui reprehenderit minima est aliquid
-        harum sit omnis nihil........ Lorem ipsum dolor sit amet. Et deleniti
-        amet qui accusantium autem et nulla voluptas et similique adipisci.
-        Necessitatibus beatae et temporibus nobis id quaerat maxime nam
-        consequatur voluptas rem dolor voluptatem? Ut reiciendis voluptatum et
-        impedit dignissimos sit sequi quia.Necessitatibus beatae et temporibus
-        nobis id quaerat maxime nam consequatur voluptas rem dolor voluptatem?
-        Aut nemo rerum et inventore labore vel corporis voluptas in consequuntur
-        voluptas. Et saepe voluptate sed commodi magni qui voluptatem delectus
-        et odio dolor aut soluta molestiae. Aut nemo rerum et inventore labore
-        vel corporis voluptas in consequuntur voluptas. Et saepe voluptate sed
-        commodi magni qui voluptatem delectus et odio dolor aut soluta
-        molestiae. Aut nemo rerum et inventore labore vel corporis voluptas in
-        consequuntur voluptas. Et saepe voluptate sed commodi magni qui
-        voluptatem delectus et odio dolor aut soluta molestiae. Qui
-        reprehenderit minima est aliquid harum sit omnis nihil........
+        harum sit omnis nihil........ 
       </p>
       <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
         <div className="rounded bg-light-blue px-4 py-1.5 font-medium">

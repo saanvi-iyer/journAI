@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { Star } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
+import { Plus } from "lucide-react";
+import { Minus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import Swal from "sweetalert2";
@@ -28,7 +30,6 @@ const Create = () => {
   const handleDelete = () =>
     MySwal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -93,15 +94,35 @@ const Create = () => {
           et odio dolor aut soluta molestiae. Qui reprehenderit minima est
           aliquid harum sit omnis nihil........
         </p>
-        <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
-          <div className="bg-light-blue rounded px-4 py-1.5 font-medium">
-            <p className="text-deep-blue">Rejuvenated</p>
+        <div className="mt-16 flex flex-col gap-y-4">
+          <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
+            <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Minus />
+            </div>
+            <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Minus />
+            </div>
+            <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Minus />
+            </div>
           </div>
-          <div className="bg-light-blue rounded px-4 py-1.5 font-medium">
-            <p className="text-deep-blue">Happy</p>
-          </div>
-          <div className="bg-light-blue rounded px-4 py-1.5 font-medium">
-            <p className="text-deep-blue">Energetic</p>
+          <p className="ml-1.5 flex font-bold">Add Emotion Tags</p>
+          <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
+            <div className="flex gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Plus />
+            </div>
+            <div className="flex gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Plus />
+            </div>
+            <div className="flex gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">Rejuvenated</p>
+              <Plus />
+            </div>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-y-3">
