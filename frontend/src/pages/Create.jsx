@@ -75,7 +75,7 @@ const Create = () => {
             />
           </div>
         </div>
-        <div className="my-1.5 h-0.5 w-full overflow-auto bg-violet/60" />
+        <div className="my-1.5 h-0.5 w-full overflow-auto  bg-violet/60" />
         <p className="text-dark-grey pl-1">Date</p>
         <p className="ml-1 mt-3 w-fit">
           Lorem ipsum dolor sit amet. Et deleniti amet qui accusantium autem et
