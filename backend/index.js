@@ -1,10 +1,12 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import user from "./api/routes/user.route.js";
 
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 
 app.get("/ping", (req, res) => {
   res.status(200).json({
@@ -23,7 +25,9 @@ const connectDB = async () => {
   }
 };
 
-connectDB();
+await connectDB();
 app.listen(3000, () => {
   console.log("server is running");
 });
+
+app.use("/api/auth", user);
