@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import user from "./api/routes/user.route.js";
+import entry from "./api/routes/entry.route.js";
 
 dotenv.config();
 
@@ -31,3 +32,4 @@ app.listen(3000, () => {
 });
 
 app.use("/api/auth", user);
+app.use("/api/entry", entry);
