@@ -8,18 +8,18 @@ import { Trash2 } from "lucide-react";
 import { Shrink } from "lucide-react";
 
 const Entry = ({maximize,handleMaximize}) => {
+  const [selectedPencil, setSelectedPencil] = useState(false);
   const [selected, setSelected] = useState(false);
-  // const [maximize, setMaximize] = useState(false);
   const navigate = useNavigate();
   function Edit() {
     navigate("/edit");
   }
+  const toggleSelectedPencil = () => {
+    setSelected(!selectedPencil);
+  };
   const toggleSelected = () => {
     setSelected(!selected);
   };
-  // const handleMaximize = () => {
-  //   setMaximize(!maximize);
-  // };
   return (
     <div
       className={`flex ${maximize ? " z-[50] h-fit w-[90vw]" : "h-[70vh] w-[68vw]"} flex-col overflow-auto rounded-xl bg-white p-4 `}
@@ -29,7 +29,7 @@ const Entry = ({maximize,handleMaximize}) => {
         <div className="flex gap-x-4">
           <Pencil
             onClick={Edit}
-            fill={selected ? "#F2D382" : "white"}
+            fill={selectedPencil ? "#F2D382" : "white"}
             className=" w-[20px] hover:cursor-pointer hover:fill-violet active:scale-95"
             color="#0F2851"
           />
