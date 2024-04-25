@@ -2,6 +2,14 @@ import mongoose from "mongoose";
 
 const entrySchema = mongoose.Schema(
   {
+    id: {
+      type: String,
+      required: [true, "Provide an ID!"],
+    },
+    date: {
+      type: String,
+      required: [true, "Provide a Date!"],
+    },
     title: {
       type: String,
       required: [true, "Add Title!"],

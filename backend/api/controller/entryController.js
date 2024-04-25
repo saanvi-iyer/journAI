@@ -7,6 +7,7 @@ export const createEntry = async (req, res) => {
     const userId = await jwt.verify(token, process.env.JWT_SECRET)._id;
     const newEntry = new entry({
       id: userId,
+      date: req.body.date,
       title: req.body.title,
       description: req.body.description,
       is_starred: req.body.is_starred,
@@ -65,13 +66,16 @@ export const updateEntry = async (req, res) => {
     const token = req.headers.authorization;
     const userId = await jwt.verify(token, process.env.JWT_SECRET)._id;
     const paramId = req.params.id;
+
     const entries = await entry.findByIdAndUpdate(
       { _id: paramId, id: userId },
       req.body
     );
+
     res.status(200).json({
       message: "Entries Updated successfully",
     });
+    
   } catch (error) {
     res.status(400).json({
       message: "Bad Request",
@@ -84,15 +88,8 @@ export const getEntryByDate = async (req, res) => {
   try {
     const token = req.headers.authorization;
     const userId = await jwt.verify(token, process.env.JWT_SECRET)._id;
-    const entries = await entry.find({ id: userId });
-    const newEntry = [];
-    const date = req.params.date;
-
-    const dates = entries.map((entry) => {
-      if (entry.createdAt.toISOString().slice(0, 10) === date && entry.id==userId) {
-        newEntry.push(entry)
-      }
-    });
+    const paramDate = req.params.date;
+    const newEntry = await entry.find({ id: userId, date: paramDate });
 
     res.status(200).json({
       message: "Entries retrieved successfully",

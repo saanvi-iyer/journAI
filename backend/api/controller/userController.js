@@ -1,6 +1,8 @@
 import user from "../models/user.model.js";
+import entry from "../models/entry.model.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken.js";
+import jwt from "jsonwebtoken";
 
 export const createUser = async (req, res) => {
   try {
@@ -17,6 +19,7 @@ export const createUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       message: "Bad Request",
+      error: error,
     });
   }
 };
@@ -43,6 +46,36 @@ export const login = async (req, res) => {
   } else {
     res.status(404).json({
       message: "User not found",
+    });
+  }
+};
+
+export const dashboard = async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const userId = await jwt.verify(token, process.env.JWT_SECRET)._id;
+    const userData = await user.findOne({ _id: userId });
+
+    if (!userData) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    const latestEntry = await entry
+      .findOne({ id: userId })
+      .sort({ createdAt: -1 })
+      .limit(1);
+
+    res.status(200).json({
+      name: userData.name,
+      email: userData.email,
+      entry: latestEntry,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Bad Request",
+      error: error.message,
     });
   }
 };
