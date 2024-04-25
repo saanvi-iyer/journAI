@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { ChevronFirst } from "lucide-react";
 import { ChevronLast } from "lucide-react";
 import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 function Home() {
   const navigate = useNavigate();

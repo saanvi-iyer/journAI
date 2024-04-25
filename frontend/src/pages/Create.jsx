@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
 import { Star } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
 import { Plus } from "lucide-react";
 import { Minus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
+import { useRef } from "react";
+import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const Create = () => {
+  const [currentDate, setCurrentDate] = useState("");
+  const getTodayDate = () => {
+    const today = new Date();
+    const formattedDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+    setCurrentDate(formattedDate);
+  };
+  useEffect(() => {
+    getTodayDate();
+  }, []);
+
   const [selected, setSelected] = useState(false);
   const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
@@ -35,17 +45,63 @@ const Create = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        MySwal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      }
-    });
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          handleDeleteEntry();
+          MySwal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      })
+      .then((result) => {
+        window.location.reload();
+      });
   const toggleSelected = () => {
     setSelected(!selected);
+  };
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const handleSubmit = () => {
+    const access_token = localStorage.getItem("access_token");
+    const title = titleRef.current.value;
+    const description = descriptionRef.current.value;
+    const formData = {
+      title: title,
+      date: currentDate.toString(),
+      description: description,
+      is_starred: selected,
+      emotion_tags: ["Happy", "Happy", "Happy"],
+    };
+    axios
+      .post("http://localhost:3000/api/entry/create", formData, {
+        headers: { Authorization: ` ${access_token}` },
+      })
+      .then((response) => {
+        console.log("Data sent successfully:", response.data);
+        handleSave();
+        localStorage.setItem("_id", response.data.data._id);
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+      });
+  };
+  const handleDeleteEntry = () => {
+    const access_token = localStorage.getItem("access_token");
+    const entryId = localStorage.getItem("_id");
+
+    axios
+      .delete(`http://localhost:3000/api/entry/delete/${entryId}`, {
+        headers: { Authorization: access_token },
+      })
+      .then((response) => {
+        console.log("Entry deleted successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error deleting entry:", error);
+      });
   };
 
   return (
@@ -65,7 +121,11 @@ const Create = () => {
       </div>
       <div className="mx-auto flex h-[70vh] w-[90vw] flex-col overflow-auto rounded-xl bg-white p-4">
         <div className="flex items-center justify-between">
-          <span className="mb-0.5 text-3xl text-deep-blue">Add Title</span>
+          <input
+            className="mb-0.5 w-full text-3xl text-deep-blue outline-none"
+            placeholder="Add Title"
+            ref={titleRef}
+          />
           <div className="flex gap-x-4">
             <Star
               onClick={toggleSelected}
@@ -75,25 +135,15 @@ const Create = () => {
             />
           </div>
         </div>
-        <div className="my-1.5 h-0.5 w-full overflow-auto  bg-violet/60" />
-        <p className="text-dark-grey pl-1">Date</p>
-        <p className="ml-1 mt-3 w-fit">
-          Lorem ipsum dolor sit amet. Et deleniti amet qui accusantium autem et
-          nulla voluptas et similique adipisci. Necessitatibus beatae et
-          temporibus nobis id quaerat maxime nam consequatur voluptas rem dolor
-          voluptatem? Ut reiciendis voluptatum et impedit dignissimos sit sequi
-          quia.Necessitatibus beatae et temporibus nobis id quaerat maxime nam
-          consequatur voluptas rem dolor voluptatem? Aut nemo rerum et inventore
-          labore vel corporis voluptas in consequuntur voluptas. Et saepe
-          voluptate sed commodi magni qui voluptatem delectus et odio dolor aut
-          soluta molestiae. Aut nemo rerum et inventore labore vel corporis
-          voluptas in consequuntur voluptas. Et saepe voluptate sed commodi
-          magni qui voluptatem delectus et odio dolor aut soluta molestiae. Aut
-          nemo rerum et inventore labore vel corporis voluptas in consequuntur
-          voluptas. Et saepe voluptate sed commodi magni qui voluptatem delectus
-          et odio dolor aut soluta molestiae. Qui reprehenderit minima est
-          aliquid harum sit omnis nihil........
-        </p>
+        <div className="my-1.5 h-1 w-full overflow-auto  bg-violet/60" />
+        <p className="pl-1 text-dark-grey">{currentDate}</p>
+        <div className="h-[45%]">
+          <textarea
+            className="ml-1 mt-3 w-full outline-none"
+            ref={descriptionRef}
+            rows={7}
+          />
+        </div>
         <div className="mt-16 flex flex-col gap-y-4">
           <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
             <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
@@ -127,8 +177,8 @@ const Create = () => {
         </div>
         <div className="flex flex-col items-center justify-center gap-y-3">
           <div
-            onClick={handleSave}
-            className="bg-water flex min-h-10 w-[20vw] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-none text-center text-white hover:bg-turquoise"
+            onClick={handleSubmit}
+            className="flex min-h-10 w-[20vw] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-none bg-water text-center text-white hover:bg-turquoise"
           >
             <p className="text-md h-auto w-full">Save Changes</p>
           </div>
