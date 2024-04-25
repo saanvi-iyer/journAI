@@ -5,6 +5,7 @@ import {
   getStarredEntries,
   updateEntry,
   getEntryByDate,
+  deleteEntry 
 } from "../controller/entryController.js";
 const router = Router();
 
@@ -13,5 +14,6 @@ router.get("", getAllEntries);
 router.get("/starred", getStarredEntries);
 router.put("/update/:id", updateEntry);
 router.get("/date/:date", getEntryByDate);
+router.delete("/delete/:id", deleteEntry);
 
 export default router;

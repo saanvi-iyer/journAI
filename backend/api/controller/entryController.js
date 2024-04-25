@@ -16,7 +16,7 @@ export const createEntry = async (req, res) => {
     await newEntry.save();
     res.status(200).json({
       message: "Entry created successfully",
-      data: req.body,
+      data: newEntry,
     });
   } catch (error) {
     res.status(400).json({
@@ -75,7 +75,6 @@ export const updateEntry = async (req, res) => {
     res.status(200).json({
       message: "Entries Updated successfully",
     });
-    
   } catch (error) {
     res.status(400).json({
       message: "Bad Request",
@@ -95,6 +94,32 @@ export const getEntryByDate = async (req, res) => {
       message: "Entries retrieved successfully",
       data: newEntry,
     });
+  } catch (error) {
+    res.status(400).json({
+      message: "Bad Request",
+      error: error,
+    });
+  }
+};
+
+export const deleteEntry = async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const userId = await jwt.verify(token, process.env.JWT_SECRET)._id;
+    const id = req.params.id;
+    const delEntry = await entry.findByIdAndDelete(id);
+
+    if (!delEntry) {
+      res.status(404).json({
+        message: "Entry not found",
+        error: error,
+      });
+    }
+      res.status(200).json({
+        message: "Entry deleted successfully",
+        data: id,
+      });
+    
   } catch (error) {
     res.status(400).json({
       message: "Bad Request",
