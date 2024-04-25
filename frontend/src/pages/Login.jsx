@@ -5,12 +5,33 @@ import { Mail } from "lucide-react";
 import logo from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 import InputBox from "../components/InputBox";
-
+import axios from "axios";
+import { useRef
+ } from "react";
 function Login() {
   const navigate = useNavigate();
-  function Home() {
-    navigate("/home");
-  }
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const handleSubmit = async () => {
+
+    const formData = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/api/auth/login`,
+        formData,
+      );
+      console.log(response.data);
+      localStorage.setItem("access_token",response.data.data.access_token)
+      navigate("/home");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <>
       <div className="background w-screen h-screen flex justify-center items-center">
@@ -29,11 +50,13 @@ function Login() {
             <InputBox
               names="Email ID"
               types="email"
+              inputRef={emailRef}
               icons={<Mail color="#B0B2C3" size={16} />}
             />
             <InputBox
               names="Password"
               types="password"
+              inputRef={passwordRef}
               icons={<Lock color="#B0B2C3" size={16} />}
             />
           </div>
@@ -46,12 +69,12 @@ function Login() {
             </a>
           </div>
 
-          <div
-            onClick={Home}
+          <button
+            onClick={handleSubmit}
             className="border-purple-plum border-[1.5px] bg-lilac-petals w-[40%] h-[40px] text-purple-plum flex justify-center items-center pb-1 rounded-[10px] cursor-pointer hover:bg-purple-plum hover:text-white"
           >
             <p className=" ">Login</p>
-          </div>
+          </button>
         </div>
       </div>
     </>

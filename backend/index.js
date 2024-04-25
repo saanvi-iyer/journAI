@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import user from "./api/routes/user.route.js";
 import entry from "./api/routes/entry.route.js";
 
@@ -8,6 +9,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.get("/ping", (req, res) => {
   res.status(200).json({
@@ -33,3 +35,4 @@ app.listen(3000, () => {
 
 app.use("/api/auth", user);
 app.use("/api/entry", entry);
+
