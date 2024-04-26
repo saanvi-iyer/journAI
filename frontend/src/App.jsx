@@ -12,6 +12,8 @@ import Home from "./pages/Home";
 import Create from "./pages/Create";
 import Edit from "./pages/Edit";
 import AllEntries from "./pages/AllEntries";
+import StarredEntries from "./pages/StarredEntries"
+
 const App = () => {
   return (
     <>
@@ -23,7 +25,8 @@ const App = () => {
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/create" element={<Create />} />
           <Route exact path="/edit" element={<Edit />} />
-          <Route exact path="/allentries" element={<AllEntries />} />
+          <Route exact path="/all/entries" element={<AllEntries />} />
+          <Route exact path="/starred/entries" element={<StarredEntries />} />
         </Routes>
       </Router>
     </>

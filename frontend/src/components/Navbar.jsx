@@ -67,17 +67,24 @@ const Navbar = () => {
               </SheetTitle>
               <SheetDescription>
                 <div className="items-left mt-4 flex flex-col justify-around gap-3">
-                  <div onClick={Home}className="ml-3 flex h-10 w-[85%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
+                  <div
+                    onClick={Home}
+                    className="ml-3 flex h-10 w-[85%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white"
+                  >
                     <Home className="ml-2" />
                     <p className="p-2 pt-1.5 text-[18px]">Home</p>
                   </div>
                   <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
                     <BookText className="ml-2" />
-                    <a href="/allentries"> <p className="p-2 pt-1.5 text-[18px]">All Entries</p> </a>
+                    <a href="/all/entries">
+                      <p className="p-2 pt-1.5 text-[18px]">All Entries</p>{" "}
+                    </a>
                   </div>
                   <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
                     <Star className="ml-2" />
-                    <p className="p-2 pt-1.5 text-[18px]">Starred Entries</p>
+                    <a href="/starred/entries">
+                      <p className="p-2 pt-1.5 text-[18px]">Starred Entries</p>
+                    </a>
                   </div>
                   <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
                     <SquareUser className="ml-2" />
