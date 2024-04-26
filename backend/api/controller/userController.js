@@ -50,7 +50,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const dashboard = async (req, res) => {
+export const home = async (req, res) => {
   try {
     const token = req.headers.authorization;
     const userId = await jwt.verify(token, process.env.JWT_SECRET)._id;
