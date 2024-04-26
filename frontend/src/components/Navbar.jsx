@@ -67,39 +67,43 @@ const Navbar = () => {
               </SheetTitle>
               <SheetDescription>
                 <div className="items-left mt-4 flex flex-col justify-around gap-3">
-                  <div
+                <a href="/home"><div
                     onClick={Home}
                     className="ml-3 flex h-10 w-[85%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white"
                   >
                     <Home className="ml-2" />
                     <p className="p-2 pt-1.5 text-[18px]">Home</p>
                   </div>
-                  <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
-                    <BookText className="ml-2" />
-                    <a href="/all/entries">
+                  </a>
+                  <a href="/all/entries">
+                    <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
+                      <BookText className="ml-2" />
                       <p className="p-2 pt-1.5 text-[18px]">All Entries</p>{" "}
-                    </a>
-                  </div>
-                  <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
-                    <Star className="ml-2" />
-                    <a href="/starred/entries">
+                    </div>
+                  </a>
+                  <a href="/starred/entries">
+                    <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
+                      <Star className="ml-2" />
+
                       <p className="p-2 pt-1.5 text-[18px]">Starred Entries</p>
-                    </a>
-                  </div>
+                    </div>
+                  </a>
                   <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
                     <SquareUser className="ml-2" />
                     <p className="p-2 pt-1.5 text-[18px]">Profile</p>
                   </div>
-                  <div className="mt-40 flex flex-col items-center justify-center gap-y-3 ">
+                  <div className="mt-56 flex flex-col items-center justify-center gap-y-3 ">
                     <div
                       onClick={Create}
                       className="flex min-h-10 w-[20vw] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-none bg-water text-center text-white hover:bg-turquoise"
                     >
                       <p className="text-md h-auto w-full">Create Entry</p>
                     </div>
-                    <div className="flex min-h-10 w-[20vw] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-none bg-alert text-center text-white hover:bg-[#FF6464] ">
-                      <p className="text-md h-auto w-full">Logout</p>
-                    </div>
+                    <a href="/login">
+                      <div className="flex min-h-10 w-[20vw] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-none bg-alert text-center text-white hover:bg-[#FF6464] ">
+                        <p className="text-md h-auto w-full">Logout</p>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </SheetDescription>

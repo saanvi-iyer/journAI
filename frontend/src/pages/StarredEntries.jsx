@@ -3,12 +3,16 @@ import axios from "axios";
 import EntryContainer from "@/components/EntryContainer";
 import Navbar from "@/components/Navbar";
 import Entry from "@/components/Entry";
+import { useNavigate } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
 
 function StarredEntries() {
   const [entries, setEntries] = useState([]);
-
+  const [maximize, setMaximize] = useState(false);
+  const navigate = useNavigate();
   const fetchData = async () => {
     const access_token = localStorage.getItem("access_token");
+
     try {
       const response = await axios.get(
         "http://localhost:3000/api/entry/starred",
@@ -26,25 +30,48 @@ function StarredEntries() {
     fetchData();
   }, []);
   useEffect(() => {
-    if(entries)
-    console.log(entries.slice(0,1).slice(0));
+    console.log(entries[0]);
   }, [entries]);
+
+  function Home() {
+    navigate("/home");
+  }
+  const handleMaximize = () => {
+    setMaximize(!maximize);
+  };
 
   return (
     <>
-      <div className="background max-w-screen flex min-h-screen flex-col overflow-y-scroll">
+      <div className="background max-w-screen flex min-h-screen flex-col ">
         <Navbar />
-        <div className="mt-[10vh] flex flex-col">
-          {entries.entry && (
-            <Entry
-              maximize={maximize}
-              handleMaximize={handleMaximize}
-              entryData={entries.slice(0).entry}
-            />
-          )}
-          {entries.slice(1).map((entry, i) => (
-            <EntryContainer key={i} title={entry.title} date={entry.date} />
-          ))}
+        <div className="mt-[13vh] flex items-center px-[2%] ">
+          <ChevronLeft
+            onClick={Home}
+            className="mb-3 ml-[-10px] mt-2.5"
+            size={32}
+            color="#0F2851"
+          />
+          <p className="ml-[12px] mb-2 text-4xl font-semibold text-deep-blue ">
+            Starred Entries
+          </p>
+        </div>
+        <div className="flex">
+          <div className="ml-14 mt-4">
+            {entries[0] && (
+              <Entry
+                maximize={maximize}
+                handleMaximize={handleMaximize}
+                entryData={entries[0]}
+              />
+            )}
+          </div>
+          {!maximize && (
+          <div className="flex flex-col">
+            {entries.slice(1).map((entry, i) => (
+              <EntryContainer key={i} title={entry.title} date={entry.date} />
+            ))}
+          </div>
+          ) }
         </div>
       </div>
     </>
