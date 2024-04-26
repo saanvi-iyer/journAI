@@ -61,6 +61,26 @@ export const getStarredEntries = async (req, res) => {
   }
 };
 
+export const getEntryById = async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const userId = await jwt.verify(token, process.env.JWT_SECRET)._id;
+    const id = req.params.id;
+    const entries = await entry.findById(id);
+
+
+    res.status(200).json({
+      message: "Entries retrieved successfully",
+      data: entries,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Bad Request",
+      error: error,
+    });
+  }
+};
+
 export const updateEntry = async (req, res) => {
   try {
     const token = req.headers.authorization;

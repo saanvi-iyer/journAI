@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { Star } from "lucide-react";
-import { ChevronLeft } from "lucide-react";
-import { Plus } from "lucide-react";
-import { Minus } from "lucide-react";
+import { ChevronLeft, Plus, Minus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios";
@@ -12,58 +10,43 @@ import withReactContent from "sweetalert2-react-content";
 
 const Create = () => {
   const [currentDate, setCurrentDate] = useState("");
+  const [emotionTags, setEmotionTags] = useState([]);
+  const [emotionList, setEmotionList] = useState([
+    "Happy",
+    "Sad",
+    "Excited",
+    "Calm",
+    "Frustrated",
+  ]);
+  const [selected, setSelected] = useState(false);
+  const MySwal = withReactContent(Swal);
+  const navigate = useNavigate();
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+
+  // Function to get today's date
   const getTodayDate = () => {
     const today = new Date();
     const formattedDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
     setCurrentDate(formattedDate);
   };
+
   useEffect(() => {
     getTodayDate();
   }, []);
 
-  const [selected, setSelected] = useState(false);
-  const MySwal = withReactContent(Swal);
-  const navigate = useNavigate();
-  function Home() {
-    navigate("/home");
-  }
-  function Edit() {
-    navigate("/edit");
-  }
-  const handleSave = () =>
-    MySwal.fire({
-      icon: "success",
-      title: "Your work has been saved",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  const handleDelete = () =>
-    MySwal.fire({
-      title: "Are you sure?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    })
-      .then((result) => {
-        if (result.isConfirmed) {
-          handleDeleteEntry();
-          MySwal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-          });
-        }
-      })
-      .then((result) => {
-        window.location.reload();
-      });
-  const toggleSelected = () => {
-    setSelected(!selected);
+  // Function to add an emotion tag
+  const addEmotionTag = (tag) => {
+    setEmotionTags([...emotionTags, tag]);
   };
-  const titleRef = useRef(null);
-  const descriptionRef = useRef(null);
+
+  // Function to remove an emotion tag
+  const removeEmotionTag = (tag) => {
+    setEmotionTags(emotionTags.filter((t) => t !== tag));
+    setEmotionList([...emotionList, tag]); 
+  };
+
+  // Function to handle form submission
   const handleSubmit = () => {
     const access_token = localStorage.getItem("access_token");
     const title = titleRef.current.value;
@@ -73,7 +56,7 @@ const Create = () => {
       date: currentDate.toString(),
       description: description,
       is_starred: selected,
-      emotion_tags: ["Happy", "Happy", "Happy"],
+      emotion_tags: emotionTags,
     };
     axios
       .post("http://localhost:3000/api/entry/create", formData, {
@@ -88,6 +71,41 @@ const Create = () => {
         console.error("Error sending data:", error);
       });
   };
+
+  // Function to handle deletion of entry
+  const handleDelete = () => {
+    MySwal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleDeleteEntry();
+        MySwal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        }).then(() => {
+          window.location.reload();
+        });
+      }
+    });
+  };
+
+  // Function to handle saving success message
+  const handleSave = () => {
+    MySwal.fire({
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
+  // Function to delete entry
   const handleDeleteEntry = () => {
     const access_token = localStorage.getItem("access_token");
     const entryId = localStorage.getItem("_id");
@@ -107,10 +125,9 @@ const Create = () => {
   return (
     <div className="background max-w-screen flex min-h-screen flex-col ">
       <Navbar />
-
       <div className="mt-[10vh] flex items-center px-[2%] py-[2%]">
         <ChevronLeft
-          onClick={Home}
+          onClick={() => navigate("/home")}
           className="mb-1 ml-[-10px] mt-2.5"
           size={32}
           color="#0F2851"
@@ -128,7 +145,7 @@ const Create = () => {
           />
           <div className="flex gap-x-4">
             <Star
-              onClick={toggleSelected}
+              onClick={() => setSelected(!selected)}
               fill={selected ? "#F2D382" : "white"}
               className=" w-[22px] hover:cursor-pointer hover:fill-[#F2D382] active:scale-95"
               color="#0F2851"
@@ -145,33 +162,35 @@ const Create = () => {
           />
         </div>
         <div className="mt-16 flex flex-col gap-y-4">
-          <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
-            <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
-              <p className="text-deep-blue">Rejuvenated</p>
-              <Minus />
-            </div>
-            <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
-              <p className="text-deep-blue">Rejuvenated</p>
-              <Minus />
-            </div>
-            <div className="flex gap-x-4 rounded bg-alert px-4 py-1.5 font-medium">
-              <p className="text-deep-blue">Rejuvenated</p>
-              <Minus />
-            </div>
+          <div className="flex flex-row gap-x-4">
+            {emotionTags.map((tag) => (
+              <div
+                key={tag}
+                className="flex w-fit gap-x-4 rounded bg-alert px-4 py-1.5 font-medium hover:cursor-pointer"
+                onClick={() => removeEmotionTag(tag)}
+              >
+                <p className="text-deep-blue">{tag}</p>
+                <Minus />
+              </div>
+            ))}
           </div>
+
           <p className="ml-1.5 flex font-bold">Add Emotion Tags</p>
           <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
-            <div className="flex gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium">
-              <p className="text-deep-blue">Rejuvenated</p>
-              <Plus />
-            </div>
-            <div className="flex gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium">
-              <p className="text-deep-blue">Rejuvenated</p>
-              <Plus />
-            </div>
-            <div className="flex gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium">
-              <p className="text-deep-blue">Rejuvenated</p>
-              <Plus />
+            <div className="flex flex-row gap-x-4">
+              {emotionList.map((tag) => (
+                <div
+                  key={tag}
+                  className="flex w-fit gap-x-4 rounded bg-light-blue px-4 py-1.5 font-medium hover:cursor-pointer"
+                  onClick={() => {
+                    addEmotionTag(tag);
+                    setEmotionList(emotionList.filter((item) => item !== tag));
+                  }}
+                >
+                  <p className="text-deep-blue">{tag}</p>
+                  <Plus />
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -20,19 +20,17 @@ function AllEntries() {
 
   useEffect(() => {
     fetchData();
-  }, []); 
+  }, []);
 
   return (
     <>
       <div className="background max-w-screen flex min-h-screen flex-col overflow-y-scroll">
         <Navbar />
-        <div className="mt-[10vh]">
-          {entries.map((entry) => (
-            <EntryContainer
-              key={entry.id}
-              title={entry.title}
-              date={entry.date}
-            />
+        <div className="mt-[13vh] flex h-[90vh] flex-col flex-wrap justify-start">
+          {entries.map((entry, i) => (
+            <a href={`/edit?id=${entry._id}`} key={i}>
+              <EntryContainer title={entry.title} date={entry.date} />
+            </a>
           ))}
         </div>
       </div>
