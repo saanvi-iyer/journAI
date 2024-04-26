@@ -73,7 +73,7 @@ const Navbar = () => {
                   </div>
                   <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
                     <BookText className="ml-2" />
-                    <p className="p-2 pt-1.5 text-[18px]">All Entries</p>
+                    <a href="/allentries"> <p className="p-2 pt-1.5 text-[18px]">All Entries</p> </a>
                   </div>
                   <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">
                     <Star className="ml-2" />

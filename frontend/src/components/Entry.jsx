@@ -7,7 +7,11 @@ import { Pencil } from "lucide-react";
 import { Trash2 } from "lucide-react";
 import { Shrink } from "lucide-react";
 
-const Entry = ({maximize,handleMaximize}) => {
+const Entry = ({
+  maximize,
+  handleMaximize,
+  entryData
+}) => {
   const [selectedPencil, setSelectedPencil] = useState(false);
   const [selected, setSelected] = useState(false);
   const navigate = useNavigate();
@@ -25,7 +29,7 @@ const Entry = ({maximize,handleMaximize}) => {
       className={`flex ${maximize ? " z-[50] h-fit w-[90vw]" : "h-[70vh] w-[68vw]"} flex-col overflow-auto rounded-xl bg-white p-4 `}
     >
       <div className="flex items-center justify-between">
-        <span className="mb-0.5 text-3xl text-deep-blue">Title</span>
+        <span className="mb-0.5 text-3xl text-deep-blue">{entryData.title}</span>
         <div className="flex gap-x-4">
           <Pencil
             onClick={Edit}
@@ -56,34 +60,16 @@ const Entry = ({maximize,handleMaximize}) => {
         </div>
       </div>
       <div className="my-1.5 h-0.5 w-full overflow-auto bg-violet/60" />
-      <p className="pl-1 text-dark-grey">Date</p>
-      <p className="ml-1 mt-3 mb-5 w-fit">
-        Lorem ipsum dolor sit amet. Et deleniti amet qui accusantium autem et
-        nulla voluptas et similique adipisci. Necessitatibus beatae et
-        temporibus nobis id quaerat maxime nam consequatur voluptas rem dolor
-        voluptatem? Ut reiciendis voluptatum et impedit dignissimos sit sequi
-        quia.Necessitatibus beatae et temporibus nobis id quaerat maxime nam
-        consequatur voluptas rem dolor voluptatem? Aut nemo rerum et inventore
-        labore vel corporis voluptas in consequuntur voluptas. Et saepe
-        voluptate sed commodi magni qui voluptatem delectus et odio dolor aut
-        soluta molestiae. Aut nemo rerum et inventore labore vel corporis
-        voluptas in consequuntur voluptas. Et saepe voluptate sed commodi magni
-        qui voluptatem delectus et odio dolor aut soluta molestiae. Aut nemo
-        rerum et inventore labore vel corporis voluptas in consequuntur
-        voluptas. Et saepe voluptate sed commodi magni qui voluptatem delectus
-        et odio dolor aut soluta molestiae. Qui reprehenderit minima est aliquid
-        harum sit omnis nihil........ 
-      </p>
+      <p className="pl-1 text-dark-grey">{entryData.date}</p>
+      <p className="mb-5 ml-1 mt-3 w-fit">{entryData.description}</p>
       <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
-        <div className="rounded bg-light-blue px-4 py-1.5 font-medium">
-          <p className="text-deep-blue">Rejuvenated</p>
-        </div>
-        <div className="rounded bg-light-blue px-4 py-1.5 font-medium">
-          <p className="text-deep-blue">Happy</p>
-        </div>
-        <div className="rounded bg-light-blue px-4 py-1.5 font-medium">
-          <p className="text-deep-blue">Energetic</p>
-        </div>
+        {/* {entryData.emotion_tags.map((tag) => {
+          return (
+            <div className="rounded bg-light-blue px-4 py-1.5 font-medium">
+              <p className="text-deep-blue">{tag}</p>
+            </div>
+          );
+        })} */}
       </div>
     </div>
   );

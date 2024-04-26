@@ -11,6 +11,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Create from "./pages/Create";
 import Edit from "./pages/Edit";
+import AllEntries from "./pages/AllEntries";
 const App = () => {
   return (
     <>
@@ -22,6 +23,7 @@ const App = () => {
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/create" element={<Create />} />
           <Route exact path="/edit" element={<Edit />} />
+          <Route exact path="/allentries" element={<AllEntries />} />
         </Routes>
       </Router>
     </>

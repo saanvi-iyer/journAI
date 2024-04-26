@@ -9,6 +9,28 @@ import { useEffect } from "react";
 import axios from "axios";
 
 function Home() {
+  const [data, setData] = useState({});
+
+  const fetchData = async () => {
+    const access_token = localStorage.getItem("access_token");
+    try {
+      const response = await axios.get("http://localhost:3000/api/auth/home", {
+        headers: { Authorization: ` ${access_token}` },
+      });
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   const navigate = useNavigate();
   const [maximize, setMaximize] = useState(false);
   function Create() {
@@ -22,12 +44,14 @@ function Home() {
       <div className="background max-w-screen flex min-h-screen flex-col overflow-y-scroll">
         <Navbar />
         <div className="mt-[10vh] px-[3%]  py-[2%]">
-          {!maximize && <p className="text-4xl font-semibold text-deep-blue">
-            Welcome, Saanvi!
-          </p>}
+          {!maximize && (
+            <p className="text-4xl font-semibold text-deep-blue">
+              Welcome, {data.name}
+            </p>
+          )}
         </div>
         <div className="flex justify-evenly">
-          <Entry maximize={maximize} handleMaximize={handleMaximize}/>
+          {data.entry && <Entry maximize={maximize} handleMaximize={handleMaximize} entryData={data.entry} />}
           {maximize ? (
             <div />
           ) : (
