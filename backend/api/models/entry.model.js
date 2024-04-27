@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const entrySchema = mongoose.Schema(
   {
-    id: {
+    user_id: {
       type: String,
       required: [true, "Provide an ID!"],
     },

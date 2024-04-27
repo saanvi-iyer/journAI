@@ -51,7 +51,7 @@ function StarredEntries() {
             size={32}
             color="#0F2851"
           />
-          <p className="mb-2 ml-[12px] text-4xl font-semibold text-deep-blue ">
+          <p className="ml-[12px] mb-2 text-4xl font-semibold text-deep-blue ">
             Starred Entries
           </p>
         </div>
@@ -66,14 +66,14 @@ function StarredEntries() {
             )}
           </div>
           {!maximize && (
-            <div className="flex flex-col">
-              {entries.slice(1).map((entry, i) => (
-                <a href={`/edit?id=${entry._id}`} key={i}>
-                <EntryContainer key={i} title={entry.title} date={entry.date} />
-                </a>
-              ))}
-            </div>
-          )}
+          <div className="flex flex-col">
+            {entries.slice(0,).map((entry, i) => (
+              <a href={`/edit?id=${entry._id}`} key={i}>
+              <EntryContainer key={i} title={entry.title} date={entry.date} />
+              </a>
+            ))}
+          </div>
+          ) }
         </div>
       </div>
     </>

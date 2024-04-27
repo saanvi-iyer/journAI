@@ -86,7 +86,7 @@ const Create = () => {
         handleDeleteEntry();
         MySwal.fire({
           title: "Deleted!",
-          text: "Your file has been deleted.",
+          text: "Your entry has been deleted.",
           icon: "success",
         }).then(() => {
           window.location.reload();

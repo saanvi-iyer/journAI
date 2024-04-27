@@ -53,7 +53,7 @@ export const login = async (req, res) => {
 export const home = async (req, res) => {
   try {
     const token = req.headers.authorization;
-    const userId = await jwt.verify(token, process.env.JWT_SECRET)._id;
+    const userId = jwt.decode(token)._id;
     const userData = await user.findOne({ _id: userId });
 
     if (!userData) {
@@ -63,7 +63,7 @@ export const home = async (req, res) => {
     }
 
     const latestEntry = await entry
-      .findOne({ id: userId })
+      .findOne({ user_id: userId })
       .sort({ createdAt: -1 })
       .limit(1);
 

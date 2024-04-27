@@ -5,17 +5,20 @@ import {
   getStarredEntries,
   updateEntry,
   getEntryByDate,
-  deleteEntry ,
-  getEntryById
-} from "../controller/entryController.js";
+  deleteEntry,
+  getEntryById,
+} from "../controllers/entryController.js";
+
+import verifyToken from "../middleware/verifyToken.js";
+
 const router = Router();
 
-router.post("/create", createEntry);
-router.get("", getAllEntries);
-router.get("/starred", getStarredEntries);
-router.put("/update/:id", updateEntry);
-router.get("/date/:date", getEntryByDate);
-router.delete("/delete/:id", deleteEntry);
-router.get("/:id", getEntryById);
+router.post("/create", verifyToken, createEntry);
+router.get("", verifyToken, getAllEntries);
+router.get("/starred", verifyToken, getStarredEntries);
+router.put("/update/:id", verifyToken, updateEntry);
+router.get("/date/:date", verifyToken, getEntryByDate);
+router.delete("/delete/:id", verifyToken, deleteEntry);
+router.get("/:id", verifyToken, getEntryById);
 
 export default router;
