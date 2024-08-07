@@ -1,4 +1,3 @@
-import React from "react";
 import { Search } from "lucide-react";
 import { User } from "lucide-react";
 import logo from "../assets/logo.svg";
@@ -16,40 +15,13 @@ import { Star } from "lucide-react";
 import { SquareUser } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 
 const Navbar = () => {
-  const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
   function Create() {
     navigate("/create");
   }
-  const handleSave = () =>
-    MySwal.fire({
-      icon: "success",
-      title: "Your work has been saved",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  const handleDelete = () =>
-    MySwal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        MySwal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      }
-    });
+  
   return (
     <div className="fixed top-0 z-[50] flex h-[10vh] w-full justify-between bg-white">
       <div className="flex items-center pl-4">
@@ -67,13 +39,14 @@ const Navbar = () => {
               </SheetTitle>
               <SheetDescription>
                 <div className="items-left mt-4 flex flex-col justify-around gap-3">
-                <a href="/home"><div
-                    onClick={Home}
-                    className="ml-3 flex h-10 w-[85%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white"
-                  >
-                    <Home className="ml-2" />
-                    <p className="p-2 pt-1.5 text-[18px]">Home</p>
-                  </div>
+                  <a href="/home">
+                    <div
+                      onClick={Home}
+                      className="ml-3 flex h-10 w-[85%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white"
+                    >
+                      <Home className="ml-2" />
+                      <p className="p-2 pt-1.5 text-[18px]">Home</p>
+                    </div>
                   </a>
                   <a href="/all/entries">
                     <div className="ml-3 flex h-10 w-[80%] cursor-pointer items-center justify-start rounded-lg bg-white text-left font-medium text-[#53545C] hover:border-purple-plum hover:bg-purple-plum hover:text-white">

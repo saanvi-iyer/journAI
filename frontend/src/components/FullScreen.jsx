@@ -1,12 +1,9 @@
-import React from "react";
 import Navbar from "./Navbar";
 import { useState } from "react";
-import { Star } from "lucide-react";
+import { Plus, Star } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Pencil } from "lucide-react";
 import { Shrink } from "lucide-react";
-import { Trash2 } from "lucide-react";
 
 const FullScreen = () => {
   const [selected, setSelected] = useState(false);
@@ -14,8 +11,8 @@ const FullScreen = () => {
   function Home() {
     navigate("/home");
   }
-  function Edit() {
-    navigate("/edit");
+  function Create() {
+    navigate("/create");
   }
   const toggleSelected = () => {
     setSelected(!selected);
@@ -42,7 +39,7 @@ const FullScreen = () => {
           </div>
         </div>
         <div className="my-1.5 h-0.5 w-full overflow-auto bg-violet/60" />
-        <p className="text-dark-grey pl-1">Date</p>
+        <p className="pl-1 text-dark-grey">Date</p>
         <p className="ml-1 mt-3 w-fit">
           Lorem ipsum dolor sit amet. Et deleniti amet qui accusantium autem et
           nulla voluptas et similique adipisci. Necessitatibus beatae et
@@ -61,13 +58,13 @@ const FullScreen = () => {
           aliquid harum sit omnis nihil........
         </p>
         <div className="mb-2 ml-1 mt-auto flex justify-start gap-x-4">
-          <div className="bg-light-blue rounded px-4 py-1.5 font-medium">
+          <div className="rounded bg-light-blue px-4 py-1.5 font-medium">
             <p className="text-deep-blue">Rejuvenated</p>
           </div>
-          <div className="bg-light-blue rounded px-4 py-1.5 font-medium">
+          <div className="rounded bg-light-blue px-4 py-1.5 font-medium">
             <p className="text-deep-blue">Happy</p>
           </div>
-          <div className="bg-light-blue rounded px-4 py-1.5 font-medium">
+          <div className="rounded bg-light-blue px-4 py-1.5 font-medium">
             <p className="text-deep-blue">Energetic</p>
           </div>
         </div>

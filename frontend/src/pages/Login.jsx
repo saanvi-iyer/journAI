@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { User } from "lucide-react";
 import { Lock } from "lucide-react";
 import { Mail } from "lucide-react";
 import logo from "../assets/logo.svg";
@@ -62,7 +60,7 @@ function Login() {
           </div>
           <div>
             <span className="text-deep-blue text-sm">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
             </span>
             <a href="/signup">
               <span className="text-purple-plum text-sm">Sign up</span>
